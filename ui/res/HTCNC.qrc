@@ -1,0 +1,5 @@
+<RCC>
+  <qresource prefix="root" >
+    <file>ToolGeometry.png</file>
+  </qresource>
+</RCC>
