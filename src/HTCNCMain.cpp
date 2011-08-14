@@ -4,7 +4,6 @@
 //
 
 #include "HTCNCMainWindow.h"
-//#include "HTCNCApp.h"
 #include "HTCNCConsole.h"
 
 #include "ui_MainWindow.h"
@@ -43,6 +42,10 @@ void qtMessageHandler(QtMsgType type, const char *msg)
 
 int main(int argc, char *argv[])
 {
+	QCoreApplication::setOrganizationName("WhirlingChair");
+	QCoreApplication::setOrganizationDomain("whirlingchair.com");
+	QCoreApplication::setApplicationName("CNC Halftone Wizard");
+
 	QApplication app(argc, argv);
 	HTCNCUI::MainWindow mainWindow;
 

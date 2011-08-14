@@ -15,10 +15,10 @@
 #include <QShortcut>
 #include <QTime>
 #include <QFileInfo>
+#include <QSettings>
 
 #include "HTCNCMainWindow.h"
 #include "HTCNCConsole.h"
-#include "HTCNCConfigureDlg.h"
 #include "HTCNCHalftoner.h"
 
 #include <assert.h>
@@ -43,9 +43,33 @@ MainWindow::MainWindow(QWidget *parent)
 	// Change WARN to DEBUG to get debugging messages in log window.
 	Console::Instance().setSeverityThreshold( Console::WARN );	
 	
-	Console::Instance( Console::ALWAYS ) << tr("Greets from The CNC Halftoner, version %1.\n").arg(VERSION_STR);
+	Console::Instance( Console::ALWAYS ) << tr("Greets from The CNC Halftone Wizard, version %1.\n").arg(VERSION_STR);
 
-	
+	QSettings	settings;
+
+	if ( settings.contains( "halftone/source_pixel_step" ) )
+		m_ui.m_stepSpinBox->setValue( settings.value( "halftone/source_pixel_step" ).toInt() );
+	if ( settings.contains( "halftone/min_dot_gap" ) )
+		m_ui.m_minDotGapLineEdit->setText( settings.value( "halftone/min_dot_gap" ).toString() );
+	if ( settings.contains( "halftone/max_cut_depth_pct" ) )
+		m_ui.m_depthPercentageSpinBox->setValue( settings.value( "halftone/max_cut_depth_pct" ).toInt() );
+
+	if ( settings.contains( "g_code/preamble" ) )
+		m_ui.m_gcodePreambleTextEdit->setPlainText( settings.value( "g_code/preamble" ).toString() );
+
+	if ( settings.contains( "tool/feed" ) )
+		m_ui.m_feedLineEdit->setText( settings.value( "tool/feed" ).toString() );
+	if ( settings.contains( "tool/speed" ) )
+		m_ui.m_speedLineEdit->setText( settings.value( "tool/speed").toString() );
+	if ( settings.contains( "tool/fast_z" ) )
+		m_ui.m_fastZLineEdit->setText( settings.value( "tool/fast_z").toString() );
+	if ( settings.contains( "tool/coolant" ) )
+		m_ui.m_coolantCheckBox->setChecked( settings.value( "tool/coolant" ).toBool() );
+	if ( settings.contains( "tool/full_tool_depth" ) )
+		m_ui.m_toolDepthLineEdit->setText( settings.value( "tool/full_tool_depth" ).toString() );
+	if ( settings.contains( "tool/full_tool_width" ) )
+		m_ui.m_toolWidthLineEdit->setText( settings.value( "tool/full_tool_width" ).toString() );
+
 	m_outputImageLabel = new QLabel();
 	m_sourceImageLabel = new QLabel();
 
@@ -196,6 +220,23 @@ void MainWindow::closeEvent( QCloseEvent* event )
 	QTextStream out(&logFile);
     out << m_ui.m_logTextEdit->toPlainText();
 	logFile.close();
+
+	// Update our settings
+	QSettings	settings;
+
+	settings.setValue( "halftone/source_pixel_step", m_ui.m_stepSpinBox->value() );
+	settings.setValue( "halftone/min_dot_gap", m_ui.m_minDotGapLineEdit->text().toDouble() );
+	settings.setValue( "halftone/max_cut_depth_pct", m_ui.m_depthPercentageSpinBox->value() );
+
+	settings.setValue( "g_code/preamble", m_ui.m_gcodePreambleTextEdit->toPlainText() );
+
+	settings.setValue( "tool/feed", m_ui.m_feedLineEdit->text().toDouble() );
+	settings.setValue( "tool/speed", m_ui.m_speedLineEdit->text().toDouble() );
+	settings.setValue( "tool/fast_z", m_ui.m_fastZLineEdit->text().toDouble() );
+	settings.setValue( "tool/coolant", m_ui.m_coolantCheckBox->isChecked());
+	settings.setValue( "tool/full_tool_depth", m_ui.m_toolDepthLineEdit->text().toDouble() );
+	settings.setValue( "tool/full_tool_width", m_ui.m_toolWidthLineEdit->text().toDouble() );
+
 	event->accept();
 }
 

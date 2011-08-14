@@ -32,14 +32,12 @@ FORMS = ui/ConfigureDlg.ui \
 RESOURCES = ui/res/HTCNC.qrc
 
 SOURCES += \
-			src/HTCNCConfigureDlg.cpp \
 			src/HTCNCConsole.cpp \
 			src/HTCNCHalftoner.cpp \
 			src/HTCNCMain.cpp \
 			src/HTCNCMainWindow.cpp 
 
 HEADERS += \
-			src/HTCNCConfigureDlg.h \
 			src/HTCNCConsole.h \
 			src/HTCNCHalftoner.h \
 			src/HTCNCMainWindow.h 
