@@ -1,6 +1,5 @@
 CONFIG += qt
 CONFIG += uitools debug_and_release
-QT += webkit
 UI_HEADERS_DIR = ./ui_inc
 MOC_DIR = ./moc
 RCC_DIR = ./qrc

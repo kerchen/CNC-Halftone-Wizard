@@ -1,3 +1,20 @@
+/******************************************************************************
+* CNC Halftone Wizard
+* Copyright (C) 2011 Paul Kerchen
+*
+* This program is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with this program.  If not, see <http://www.gnu.org/licenses/>.
+******************************************************************************/
 
 #include "HTCNCHalftoner.h"
 
@@ -59,8 +76,6 @@ namespace HTCNC
 		// zig-zag pattern of a typical halftone image.
 		for ( int y = params.m_step/2, cy = src_img.height()/params.m_step; y < src_img.height(); y+=params.m_step, --cy, write_y = true )
 		{
-			int	step_count( src_img.width() / params.m_step );
-
 			for ( int x = offset, cx = 1; x < src_img.width(); x+=params.m_step, ++cx )
 			{
 				double ds( getDotSize( src_img, x, y, radius ) );
