@@ -33,11 +33,9 @@ ran the commands from.
 I developed this app under Windows 7 using Microsoft Visual Studio 2005 and 
 Qt 4.5.0.  I didn't do anything tricky in my code, so it should have no problems
 compiling under more current versions of MSVC and Qt (and it should run under
-Windows XP, Vista and Windows 7).  Also, though I haven't built the app under 
-linux yet, I've built other apps under linux using versions 3.4 and 4.1 of g++ 
-that use all of the same functionality that the CNC Halftone Wizard uses, so I 
-would be very surprised if this doesn't build under a properly configured 
-linux environment.
+Windows XP, Vista and Windows 7).  I've also verified that the app builds and
+runs under Ubuntu 10.10, so there shouldn't be any problems building and running
+this app under most recent linux distros.
 
 Using the CNC Halftone Wizard
 
