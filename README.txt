@@ -37,6 +37,19 @@ Windows XP, Vista and Windows 7).  I've also verified that the app builds and
 runs under Ubuntu 10.10, so there shouldn't be any problems building and running
 this app under most recent linux distros.
 
+Running the pre-built Windows App
+
+If you're running the pre-built app, you may need to install the proper Microsoft
+Visual C++ 2005 redistributable DLLs.  Finding the one that matches the version
+of MSVC2005 that I built the app with has been an exercise in futility, so I've
+simply added the correct one to the git repo.  vcredist_x86.exe is the installer
+for the DLLs needed by the app, but you should try running the app first (before
+running vcredist_x86.exe) in case you don't need it.  If you do need it, you'll
+get one of a few cryptic error messages, referring to "side-by-side caches" or
+simply "the application cannot be run".  These aren't my error messages!  They
+come from Windows, so I have no control over the cryptic messages that are
+displayed if all of the app's DLLs aren't just where they should be.
+
 Using the CNC Halftone Wizard
 
 Using it is fairly straight-forward (spoken like a true software developer).  
